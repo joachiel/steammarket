@@ -7,6 +7,8 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # This gives the job permission to write to the repository
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -14,7 +16,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18 # or your preferred version
+          node-version: 18
 
       - name: Install dependencies
         run: npm ci # or yarn install
@@ -26,4 +28,5 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4.3.3
         with:
           branch: gh-pages
-          folder: dist # Vite's default output folder
+          folder: dist
+          token: ${{ secrets.DEPLOY_TOKEN }} # Use your secret here
