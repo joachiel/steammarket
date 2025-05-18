@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Home() {
   const [itemData, setItemData] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [savedPrice, setSavedPrice] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const baseUrl = "https://www.steamwebapi.com/steam/api/item";
@@ -122,6 +123,21 @@ function Home() {
           </div>
         </div>
       </Link>
+      <button
+        style={{
+          marginTop: 24,
+          padding: "10px 24px",
+          borderRadius: 8,
+          border: "none",
+          background: "#222",
+          color: "#fff",
+          fontSize: 16,
+          cursor: "pointer",
+        }}
+        onClick={() => navigate("/XD")}
+      >
+        Go to ThomasXD
+      </button>
     </div>
   );
 }
